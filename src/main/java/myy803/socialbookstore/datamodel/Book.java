@@ -158,4 +158,11 @@ public class Book {
 		
 		return requestingUserProfileDtos;
 	}
+
+	/*
+	new
+	 */
+	public void removeRequestingUser(UserProfile userProfile) {
+		requestingUsers.remove(userProfile);
+	}
 }

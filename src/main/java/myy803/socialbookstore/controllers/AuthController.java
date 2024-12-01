@@ -1,6 +1,7 @@
 package myy803.socialbookstore.controllers;
 
 
+import myy803.socialbookstore.services.profile.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,13 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import myy803.socialbookstore.datamodel.User;
-import myy803.socialbookstore.services.UserService;
 
 
 @Controller
 public class AuthController {
     @Autowired
-    UserService userService;
+    UserProfileService userProfileService;
 
     @RequestMapping("/login")
     public String login(){
@@ -30,12 +30,12 @@ public class AuthController {
     @RequestMapping("/save")
     public String registerUser(@ModelAttribute("user") User user, Model model){
        
-        if(userService.isUserPresent(user)){
+        if(userProfileService.isUserPresent(user)){
             model.addAttribute("successMessage", "User already registered!");
             return "auth/login";
         }
 
-        userService.saveUser(user);
+        userProfileService.saveUser(user);
         model.addAttribute("successMessage", "User registered successfully!");
 
         return "auth/login";

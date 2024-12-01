@@ -3,11 +3,14 @@ package myy803.socialbookstore.datamodel;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import myy803.socialbookstore.formsdata.BookDto;
 import myy803.socialbookstore.formsdata.UserProfileDto;
 
 @Entity
 @Table(name="user_profiles")
+@Getter @Setter
 public class UserProfile {
 	@Id
 	@Column(name="username")
@@ -75,53 +78,8 @@ public class UserProfile {
 		this.bookOffers = bookOffers;
 	}
 
-	public String getUsername() {
-		return username;
-	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
 
-	public String getFullName() {
-		return fullName;
-	}
-
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-	
-	public List<BookAuthor> getFavouriteBookAuthors() {
-		return favouriteBookAuthors;
-	}
-
-	public void setFavouriteBookAuthors(List<BookAuthor> favouriteBookAuthors) {
-		this.favouriteBookAuthors = favouriteBookAuthors;
-	}
-
-	public List<BookCategory> getFavouriteBookCategories() {
-		return favouriteBookCategories;
-	}
-
-	public void setFavouriteBookCategories(List<BookCategory> favouriteBookCategories) {
-		this.favouriteBookCategories = favouriteBookCategories;
-	}
-
-	public List<Book> getBookOffers() {
-		return bookOffers;
-	}
-
-	public void setBookOffers(List<Book> bookOffers) {
-		this.bookOffers = bookOffers;
-	}
 
 	public void addBookAuthor(BookAuthor bookAuthor) {
 		boolean ret = favouriteBookAuthors.add(bookAuthor);
@@ -174,6 +132,13 @@ public class UserProfile {
 
 	public void addBookOffer(Book bookOffer) {
 		bookOffers.add(bookOffer);
+	}
+
+	/*
+	This is new
+	 */
+	public void removeBookOffer(Book bookOffer) {
+		bookOffers.remove(bookOffer);
 	}
 
 	public List<BookDto> getBooksOfFavouriteCategories() {
