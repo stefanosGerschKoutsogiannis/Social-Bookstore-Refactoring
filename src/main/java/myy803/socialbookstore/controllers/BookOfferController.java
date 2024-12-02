@@ -55,8 +55,7 @@ public class BookOfferController {
 
     @RequestMapping("/user/delete_book_offer")
     public String deleteBookOffer(@RequestParam("selected_offer_id") int bookId, Model model) {
-        String username = userProfileService.authenticateUser();
-        bookOfferService.deleteBookOffer(username, bookId);
+        bookOfferService.deleteBookOffer(bookId);
 
         System.err.println("Delete Book Offer for book id: " + bookId);
 

@@ -1,5 +1,6 @@
 package myy803.socialbookstore.services.request;
 
+import myy803.socialbookstore.datamodel.UserProfile;
 import myy803.socialbookstore.formsdata.BookDto;
 import myy803.socialbookstore.formsdata.UserProfileDto;
 

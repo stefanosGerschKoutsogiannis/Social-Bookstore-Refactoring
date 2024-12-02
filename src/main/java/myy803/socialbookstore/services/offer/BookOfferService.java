@@ -10,5 +10,5 @@ public interface BookOfferService {
     public List<BookDto> findBookOffers(String username);
     public List<BookCategory> showBookOffers();
     public void addBookOffer(String username, BookDto bookOfferDto);
-    public void deleteBookOffer(String username, int bookDtoId);
+    public void deleteBookOffer(int bookDtoId);
 }
