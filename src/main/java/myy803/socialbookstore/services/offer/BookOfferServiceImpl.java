@@ -16,17 +16,22 @@ import java.util.Optional;
 @Service
 public class BookOfferServiceImpl implements BookOfferService {
 
-    @Autowired
-    UserProfileMapper userProfileMapper;
+
+    private final UserProfileMapper userProfileMapper;
+    private final BookCategoryMapper bookCategoryMapper;
+    private final BookAuthorMapper bookAuthorMapper;
+    private final BookMapper bookMapper;
 
     @Autowired
-    BookCategoryMapper bookCategoryMapper;
-
-    @Autowired
-    BookAuthorMapper bookAuthorMapper;
-
-    @Autowired
-    BookMapper bookMapper;
+    public BookOfferServiceImpl(UserProfileMapper userProfileMapper,
+                                BookCategoryMapper bookCategoryMapper,
+                                BookAuthorMapper bookAuthorMapper,
+                                BookMapper bookMapper) {
+        this.userProfileMapper = userProfileMapper;
+        this.bookCategoryMapper = bookCategoryMapper;
+        this.bookAuthorMapper = bookAuthorMapper;
+        this.bookMapper = bookMapper;
+    }
 
     @Override
     public List<BookDto> findBookOffers(String username) {

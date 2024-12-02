@@ -18,8 +18,12 @@ public class UserProfileController {
     @Autowired
     BookCategoryMapper bookCategoryMapper;
 
+    private final UserProfileService userProfileService;
+
     @Autowired
-    UserProfileService userProfileService;
+    public UserProfileController(UserProfileService userProfileService) {
+        this.userProfileService = userProfileService;
+    }
 
     @RequestMapping("/user/dashboard")
     public String getUserMainMenu(){
@@ -32,11 +36,9 @@ public class UserProfileController {
         String username = userProfileService.authenticateUser();
         System.err.println("Logged use: " + username);
 
-        // create a service, for books or something
-        List<BookCategory> categories = bookCategoryMapper.findAll();
+        List<BookCategory> categories = userProfileService.findAllBookCategories();
         model.addAttribute("categories", categories);
 
-        // method at userProfileService
         UserProfileDto userProfileData =  userProfileService.findUser(username);
         model.addAttribute("profile", userProfileData);
 

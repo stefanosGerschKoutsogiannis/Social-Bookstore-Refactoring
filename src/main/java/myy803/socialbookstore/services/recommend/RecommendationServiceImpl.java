@@ -12,8 +12,12 @@ import java.util.List;
 @Service
 public class RecommendationServiceImpl implements RecommendationService {
 
+    private final RecommendationsFactory recommendationsFactory;
+
     @Autowired
-    RecommendationsFactory recommendationsFactory;
+    public RecommendationServiceImpl(RecommendationsFactory recommendationsFactory) {
+        this.recommendationsFactory = recommendationsFactory;
+    }
 
     @Override
     public List<BookDto> recommendBooks(RecommendationsDto recommendationsDto, String username) {

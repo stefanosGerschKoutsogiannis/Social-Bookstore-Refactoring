@@ -15,9 +15,12 @@ import java.util.List;
 @Controller
 public class SearchController {
 
+    private final SearchService searchService;
 
     @Autowired
-    SearchService searchService;
+    public SearchController(SearchService searchService) {
+        this.searchService = searchService;
+    }
 
     @RequestMapping("/user/search")
     public String showSearchForm(Model model) {
