@@ -62,6 +62,7 @@ public class RequestController {
 
     @RequestMapping("/user/delete_book_request")
     public String deleteBookRequest(@RequestParam("selected_request_id") int bookId, Model model) {
+        String username = userProfileService.authenticateUser();
         requestService.deleteRequestForBook(bookId);
         System.err.println("Delete Book Request for book id: " + bookId);
 

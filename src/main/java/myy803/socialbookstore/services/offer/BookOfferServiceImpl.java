@@ -36,8 +36,7 @@ public class BookOfferServiceImpl implements BookOfferService {
     @Override
     public List<BookDto> findBookOffers(String username) {
         Optional<UserProfile> optUserProfile = userProfileMapper.findById(username);
-        UserProfile userProfile = optUserProfile.get();
-        return userProfile.buildBookOffersDtos();
+        return optUserProfile.get().buildBookOffersDtos();
     }
 
     @Override
@@ -53,10 +52,11 @@ public class BookOfferServiceImpl implements BookOfferService {
         userProfileMapper.save(userProfile);
     }
 
+    /*
+    does not work, fixed it
+     */
     @Override
-    public void deleteBookOffer(String username, int bookDtoId) {
-        Optional<UserProfile> optUserProfile = userProfileMapper.findById(username);
-        UserProfile userProfile = optUserProfile.get();
-        userProfile.removeBookOffer(bookMapper.findById(bookDtoId).get());
+    public void deleteBookOffer(int bookDtoId) {
+        bookMapper.deleteById(bookDtoId);
     }
 }
