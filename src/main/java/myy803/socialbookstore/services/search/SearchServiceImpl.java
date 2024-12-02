@@ -8,16 +8,21 @@ import myy803.socialbookstore.mappers.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.naming.directory.SearchResult;
 import java.util.List;
 
 @Service
 public class SearchServiceImpl implements SearchService {
 
-    @Autowired
-    SearchFactory searchFactory;
+
+    private final SearchFactory searchFactory;
+    private final BookMapper bookMapper;
 
     @Autowired
-    BookMapper bookMapper;
+    public SearchServiceImpl(SearchFactory searchFactory, BookMapper bookMapper) {
+        this.searchFactory = searchFactory;
+        this.bookMapper = bookMapper;
+    }
 
     @Override
     public List<BookDto> searchBooks(SearchDto searchDto) {

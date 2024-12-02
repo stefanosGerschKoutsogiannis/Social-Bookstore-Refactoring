@@ -15,11 +15,15 @@ import java.util.List;
 @Controller
 public class RequestController {
 
-    @Autowired
-    UserProfileService userProfileService;
+
+    private final UserProfileService userProfileService;
+    private final RequestService requestService;
 
     @Autowired
-    RequestService requestService;
+    public RequestController(UserProfileService userProfileService, RequestService requestService) {
+        this.userProfileService = userProfileService;
+        this.requestService = requestService;
+    }
 
     @RequestMapping("/user/request_book")
     public String requestBook(@RequestParam("selected_book_id") int bookId, Model model) {

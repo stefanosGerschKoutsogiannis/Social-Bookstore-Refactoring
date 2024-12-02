@@ -15,13 +15,14 @@ import java.util.Optional;
 @Service
 public class RequestServiceImpl implements RequestService {
 
-    @Autowired
-    BookMapper bookMapper;
+    private final BookMapper bookMapper;
+    private final UserProfileMapper userProfileMapper;
 
     @Autowired
-    UserProfileMapper userProfileMapper;
-
-
+    public RequestServiceImpl(BookMapper bookMapper, UserProfileMapper userProfileMapper) {
+        this.bookMapper = bookMapper;
+        this.userProfileMapper = userProfileMapper;
+    }
 
     @Override
     public void requestBook(String username, int bookId) {
@@ -60,7 +61,7 @@ public class RequestServiceImpl implements RequestService {
         bookMapper.delete(requestedBook.get());
     }
 
-    // works
+    // DOES NOT WORK CORRECTLY
     @Override
     public void deleteRequestForBook(int bookId) {
         Optional<Book> requestedBook = findBookById(bookId);

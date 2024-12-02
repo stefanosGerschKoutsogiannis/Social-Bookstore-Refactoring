@@ -16,11 +16,15 @@ import java.util.List;
 @Controller
 public class BookOfferController {
 
-    @Autowired
-    UserProfileService userProfileService;
+
+    private final UserProfileService userProfileService;
+    private final BookOfferService bookOfferService;
 
     @Autowired
-    BookOfferService bookOfferService;
+    public BookOfferController(UserProfileService userProfileService, BookOfferService bookOfferService) {
+        this.userProfileService = userProfileService;
+        this.bookOfferService = bookOfferService;
+    }
 
     @RequestMapping("/user/offers")
     public String listBookOffers(Model model) {

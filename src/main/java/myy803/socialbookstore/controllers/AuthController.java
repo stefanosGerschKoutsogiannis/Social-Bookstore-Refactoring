@@ -13,8 +13,13 @@ import myy803.socialbookstore.datamodel.User;
 
 @Controller
 public class AuthController {
+
+    private final UserProfileService userProfileService;
+
     @Autowired
-    UserProfileService userProfileService;
+    public AuthController(UserProfileService userProfileService) {
+        this.userProfileService = userProfileService;
+    }
 
     @RequestMapping("/login")
     public String login(){

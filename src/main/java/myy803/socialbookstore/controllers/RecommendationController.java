@@ -15,11 +15,15 @@ import java.util.List;
 @Controller
 public class RecommendationController {
 
-    @Autowired
-    UserProfileService userProfileService;
+    private final UserProfileService userProfileService;
+    private final RecommendationService recommendationService;
 
     @Autowired
-    RecommendationService recommendationService;
+    public RecommendationController(UserProfileService userProfileService,
+                                    RecommendationService recommendationService) {
+        this.userProfileService = userProfileService;
+        this.recommendationService = recommendationService;
+    }
 
 
     @RequestMapping("/user/recom")

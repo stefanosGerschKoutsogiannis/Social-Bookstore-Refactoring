@@ -1,5 +1,6 @@
 package myy803.socialbookstore.services.profile;
 
+import myy803.socialbookstore.datamodel.BookCategory;
 import myy803.socialbookstore.datamodel.User;
 import myy803.socialbookstore.formsdata.UserProfileDto;
 import myy803.socialbookstore.mappers.BookAuthorMapper;
@@ -16,25 +17,24 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import myy803.socialbookstore.datamodel.UserProfile;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserProfileServiceImpl implements UserDetailsService, UserProfileService {
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
+    BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
-    private UserMapper userMapper;
-
+    UserMapper userMapper;
     @Autowired
-    private UserProfileMapper userProfileMapper;
-
+    UserProfileMapper userProfileMapper;
     @Autowired
-    private BookAuthorMapper bookAuthorMapper;
-
+    BookAuthorMapper bookAuthorMapper;
     @Autowired
-    private BookCategoryMapper bookCategoryMapper;
+    BookCategoryMapper bookCategoryMapper;
+
+
 
     @Override
     public void saveUser(User user) {
@@ -57,15 +57,22 @@ public class UserProfileServiceImpl implements UserDetailsService, UserProfileSe
                 ));
     }
 
+    @Override
     public String authenticateUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
     }
 
+    @Override
+    public List<BookCategory> findAllBookCategories() {
+        return bookCategoryMapper.findAll();
+    }
+
+    @Override
     public UserProfileDto findUser(String username) {
         Optional<UserProfile> optUserProfile = userProfileMapper.findById(username);
-        UserProfileDto userProfileDto = null;
-        UserProfile userProfile = null;
+        UserProfileDto userProfileDto;
+        UserProfile userProfile;
         if (optUserProfile.isPresent()) {
             userProfile = optUserProfile.get();
             userProfileDto = userProfile.buildProfileDto();
@@ -76,6 +83,7 @@ public class UserProfileServiceImpl implements UserDetailsService, UserProfileSe
         return userProfileDto;
     }
 
+    @Override
     public void saveUserProfile(String username, UserProfileDto userProfileDto) {
         Optional<UserProfile> optUserProfile = userProfileMapper.findById(username);
 
