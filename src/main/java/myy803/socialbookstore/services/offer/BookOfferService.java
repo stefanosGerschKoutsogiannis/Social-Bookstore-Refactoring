@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface BookOfferService {
 
-    public List<BookDto> findBookOffers(String username);
-    public List<BookCategory> showBookOffers();
-    public void addBookOffer(String username, BookDto bookOfferDto);
-    public void deleteBookOffer(int bookDtoId);
+    List<BookDto> findBookOffers(String username);
+    List<BookCategory> showBookOffers();
+    void addBookOffer(String username, BookDto bookOfferDto);
+    void deleteBookOffer(int bookDtoId);
 }

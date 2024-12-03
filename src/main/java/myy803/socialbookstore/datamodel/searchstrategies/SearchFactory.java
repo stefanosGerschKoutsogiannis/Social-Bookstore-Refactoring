@@ -6,10 +6,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class SearchFactory {
 
+	private final ExactSearchStrategy exactSearchStrategy;
+	private final ApproximateSearchStrategy approximateSearchStrategy;
+
 	@Autowired
-	private ExactSearchStrategy exactSearchStrategy;
-	@Autowired
-	private ApproximateSearchStrategy approximateSearchStrategy;
+	public SearchFactory(ExactSearchStrategy exactSearchStrategy, ApproximateSearchStrategy approximateSearchStrategy) {
+		this.exactSearchStrategy = exactSearchStrategy;
+		this.approximateSearchStrategy = approximateSearchStrategy;
+	}
 	
 	public SearchStrategy create(String searchStrategy) {
 		if(searchStrategy.equals("Exact"))

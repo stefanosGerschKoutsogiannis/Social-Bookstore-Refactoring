@@ -89,21 +89,21 @@ public class UserProfileDto {
 		userProfile.setAge(age);
 		
 		String[] bookAuthorsNames = favouriteBookAuthors.split(",");
-		for(int i = 0; i < bookAuthorsNames.length; i++) {
-			List<BookAuthor> bookAuthors = bookAuthorMapper.findByName(bookAuthorsNames[i].trim());
-			BookAuthor bookAuthor = null;
-			if(bookAuthors.size() == 0) {
-				bookAuthor = new BookAuthor();
-				bookAuthor.setName(bookAuthorsNames[i].trim());
-			} else
-				bookAuthor = bookAuthors.get(0);
-			
-			userProfile.addBookAuthor(bookAuthor);
-		}
-		
-		for (int i = 0; i < favouriteBookCategories.length; i++) {
-			List<BookCategory> categories = bookCategoriesMapper.findByName(favouriteBookCategories[i]);
-			userProfile.addBookCategory(categories.get(0));
-		}
+        for (String bookAuthorsName : bookAuthorsNames) {
+            List<BookAuthor> bookAuthors = bookAuthorMapper.findByName(bookAuthorsName.trim());
+            BookAuthor bookAuthor;
+            if (bookAuthors.isEmpty()) {
+                bookAuthor = new BookAuthor();
+                bookAuthor.setName(bookAuthorsName.trim());
+            } else
+                bookAuthor = bookAuthors.get(0);
+
+            userProfile.addBookAuthor(bookAuthor);
+        }
+
+        for (String favouriteBookCategory : favouriteBookCategories) {
+            List<BookCategory> categories = bookCategoriesMapper.findByName(favouriteBookCategory);
+            userProfile.addBookCategory(categories.get(0));
+        }
 	}
 }

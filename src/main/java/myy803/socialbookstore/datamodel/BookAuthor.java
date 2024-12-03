@@ -4,15 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name="book_authors")
-@Getter @Setter  @ToString
 public class BookAuthor {
 	
 	@Id

@@ -6,19 +6,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class RecommendationsFactory {
 
+	private final FavouriteCategoriesStrategy favouriteCategoriesStrategy;
+	private final FavouriteAuthorsStrategy favouriteAuthorsStrategy;
+	private final FavouriteCategoriesAndAuthorsStrategy favouriteCategoriesAndAuthorsStrategy;
+
 	@Autowired
-	private FavouriteCategoriesStrategy favouriteCategoriesStrategy;
-	@Autowired
-	private FavouriteAuthorsStrategy favouriteAuthorsStrategy;
-	@Autowired
-	private FavouriteCategoriesAndAuthorsStrategy favouriteCategoriesAndAuthorsStrategy;
+	public RecommendationsFactory(FavouriteAuthorsStrategy favouriteAuthorsStrategy,
+								  FavouriteCategoriesStrategy favouriteCategoriesStrategy,
+								  FavouriteCategoriesAndAuthorsStrategy favouriteCategoriesAndAuthorsStrategy) {
+		this.favouriteCategoriesStrategy = favouriteCategoriesStrategy;
+		this.favouriteAuthorsStrategy = favouriteAuthorsStrategy;
+		this.favouriteCategoriesAndAuthorsStrategy = favouriteCategoriesAndAuthorsStrategy;
+	}
 	
 	
-	public RecommendationsStrategy create(String recomStrategy) {
-		if(recomStrategy.equals("Favourite Categories"))
+	public RecommendationsStrategy create(String recommendationStrategy) {
+		if(recommendationStrategy.equals("Favourite Categories"))
 			return favouriteCategoriesStrategy;
 		else
-			if(recomStrategy.equals("Favourite Authors"))
+			if(recommendationStrategy.equals("Favourite Authors"))
 				return favouriteAuthorsStrategy;
 			else 
 				return favouriteCategoriesAndAuthorsStrategy;

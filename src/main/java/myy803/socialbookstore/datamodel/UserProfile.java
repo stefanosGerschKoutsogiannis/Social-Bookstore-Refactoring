@@ -151,20 +151,20 @@ public class UserProfile {
 		return bookRequestsDtos;
 	}
 	public UserProfileDto buildProfileDto() {
-		String favoriteAuthors = "";
+		StringBuilder favoriteAuthors = new StringBuilder();
 		String [] favoriteCategories = new String[favouriteBookCategories.size()];
 
 		for(int i = 0; i < favouriteBookAuthors.size(); i++) {
-			favoriteAuthors += favouriteBookAuthors.get(i).getName();
+			favoriteAuthors.append(favouriteBookAuthors.get(i).getName());
 			if(i < favouriteBookAuthors.size()-1)
-				favoriteAuthors += ", ";
+				favoriteAuthors.append(", ");
 		}
 
 		for(int i = 0; i < favouriteBookCategories.size(); i++) {
 			favoriteCategories[i] = favouriteBookCategories.get(i).getName();
 		}
 
-		return new UserProfileDto(username, fullName, age, favoriteAuthors, favoriteCategories);
+		return new UserProfileDto(username, fullName, age, favoriteAuthors.toString(), favoriteCategories);
 	}
 
 	public void clear() {
