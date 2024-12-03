@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface RecommendationService {
 
-    public List<BookDto> recommendBooks(RecommendationsDto recommendationsDto, String username);
+    List<BookDto> recommendBooks(RecommendationsDto recommendationsDto, String username);
 }

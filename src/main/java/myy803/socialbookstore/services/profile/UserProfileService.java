@@ -7,11 +7,11 @@ import myy803.socialbookstore.formsdata.UserProfileDto;
 import java.util.List;
 
 public interface UserProfileService {
-    public void saveUser(User user);
-    public boolean isUserPresent(User user);
-    public String authenticateUser();
-    public List<BookCategory> findAllBookCategories();
-    public UserProfileDto findUser(String username);
-    public void saveUserProfile(String username, UserProfileDto userProfileDto);
+    void saveUser(User user);
+    boolean isUserPresent(User user);
+    String authenticateUser();
+    List<BookCategory> findAllBookCategories();
+    UserProfileDto findUser(String username);
+    void saveUserProfile(String username, UserProfileDto userProfileDto);
 
 }

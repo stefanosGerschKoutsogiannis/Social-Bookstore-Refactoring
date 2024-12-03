@@ -4,15 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name="book_categories")
-@Getter @Setter  @ToString
 public class BookCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

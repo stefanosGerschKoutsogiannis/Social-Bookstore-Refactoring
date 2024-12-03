@@ -82,20 +82,20 @@ public class BookDto {
 		Book bookOffer = new Book(title);
 		
 		List<BookCategory> bookCategories = bookCategoryMapper.findByName(category);
-		if(bookCategories.size() == 0) {
+		if(bookCategories.isEmpty()) {
 			bookCategories = bookCategoryMapper.findByName("Other");
 		}
 
 		bookOffer.setCategory(bookCategories.get(0));
 	
 		String[] bookAuthorsArray = authors.split(",");
-		for(int i = 0; i < bookAuthorsArray.length; i++) {
-			List<BookAuthor> bookAuthors = bookAuthorMapper.findByName(bookAuthorsArray[i].trim());
-			if(bookAuthors.size() != 0)
-				bookOffer.addAuthor(bookAuthors.get(0));
-			else
-				bookOffer.addAuthor(new BookAuthor(bookAuthorsArray[i].trim()));
-		}
+        for (String s : bookAuthorsArray) {
+            List<BookAuthor> bookAuthors = bookAuthorMapper.findByName(s.trim());
+            if (!bookAuthors.isEmpty())
+                bookOffer.addAuthor(bookAuthors.get(0));
+            else
+                bookOffer.addAuthor(new BookAuthor(s.trim()));
+        }
 		
 		return bookOffer;
 	}

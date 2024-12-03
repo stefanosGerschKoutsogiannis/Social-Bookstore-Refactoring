@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface SearchService {
 
-    public List<BookDto> searchBooks(SearchDto searchDto);
+    List<BookDto> searchBooks(SearchDto searchDto);
 }

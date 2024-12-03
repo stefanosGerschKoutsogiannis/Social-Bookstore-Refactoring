@@ -2,7 +2,6 @@ package myy803.socialbookstore.datamodel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import jakarta.persistence.*;
 import myy803.socialbookstore.formsdata.BookDto;
