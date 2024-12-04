@@ -26,12 +26,12 @@ public class BookCategoryMapperTests {
     @BeforeEach
     public void setUpData() {
         bookCategoryTest = new BookCategory();
-        bookCategoryTest.setName("Literature");
+        bookCategoryTest.setName("Fake category");
     }
 
     @Test
-    @DisplayName("Junit test for save book category operation")
-    void givenBookCategory_whenSave_thenReturnSavedBookCategory() {
+    @DisplayName("Junit test for save operation")
+    void givenBookCategory_whenSave_thenSuccess() {
         BookCategory savedBookCategory = bookCategoryMapper.save(bookCategoryTest);
 
         assertThat(savedBookCategory).isNotNull();
@@ -45,7 +45,7 @@ public class BookCategoryMapperTests {
 
         List<BookCategory> bookCategories = bookCategoryMapper.findByName(savedBookCategory.getName());
         Assertions.assertNotNull(bookCategories);
-        //assertThat(bookCategories.size()).isEqualTo(1);
+        assertThat(bookCategories.size()).isEqualTo(1);
         Assertions.assertEquals(savedBookCategory.getCategoryId(), bookCategories.get(0).getCategoryId());
         Assertions.assertEquals(savedBookCategory.getName(), bookCategories.get(0).getName());
     }
