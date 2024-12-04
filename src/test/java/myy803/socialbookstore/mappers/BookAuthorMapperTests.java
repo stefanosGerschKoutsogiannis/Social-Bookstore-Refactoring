@@ -26,7 +26,7 @@ public class BookAuthorMapperTests {
 
     @Test
     @DisplayName("Junit test for save book author operation")
-    void givenBookAuthor_whenSave_thenReturnSaveBookAuthor() {
+    void givenBookAuthor_whenSave_thenSuccess() {
         BookAuthor savedBookAuthor = bookAuthorMapper.save(russianGuy);
 
         assertThat(savedBookAuthor).isNotNull();
