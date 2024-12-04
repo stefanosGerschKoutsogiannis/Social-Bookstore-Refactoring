@@ -40,7 +40,7 @@ public class BookCategoryMapperTests {
 
     @Test
     @DisplayName("Junit test for find by name operation")
-    void givenBookCategory_whenFindByName_thenReturnBookCategory() {
+    void givenBookCategory_whenFindByName_thenSuccess() {
         BookCategory savedBookCategory = bookCategoryMapper.save(bookCategoryTest);
 
         List<BookCategory> bookCategories = bookCategoryMapper.findByName(savedBookCategory.getName());
