@@ -38,7 +38,7 @@ public class BookMapperTests {
 
     @Test
     @DisplayName("Junit test for find by title operation")
-    public void givenBook_whenFindByTitle_thenReturnBook() {
+    public void givenBook_whenFindByTitle_thenSuccess() {
         Book savedBook = bookMapper.save(testBook);
 
         List<Book> books = bookMapper.findByTitle(savedBook.getTitle());
@@ -50,7 +50,7 @@ public class BookMapperTests {
 
     @Test
     @DisplayName("Junit test for find by title containing operation")
-    public void givenBook_whenFindByTitleContaining_thenReturnBook() {
+    public void givenBook_whenFindByTitleContaining_thenSuccess() {
         Book savedBook = bookMapper.save(testBook);
 
         List<Book> books = bookMapper.findByTitleContaining(savedBook.getTitle());

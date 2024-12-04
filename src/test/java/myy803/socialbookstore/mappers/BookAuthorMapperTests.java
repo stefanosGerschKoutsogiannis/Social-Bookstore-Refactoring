@@ -35,7 +35,7 @@ public class BookAuthorMapperTests {
 
     @Test
     @DisplayName("Junit test for find by name operation")
-    void givenBookAuthor_whenFindByName_thenReturnBookAuthor() {
+    void givenBookAuthor_whenFindByName_thenSuccess() {
         BookAuthor rus = bookAuthorMapper.save(russianGuy);
 
         List<BookAuthor> authors = bookAuthorMapper.findByName(russianGuy.getName());
