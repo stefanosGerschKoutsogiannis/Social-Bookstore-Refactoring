@@ -150,6 +150,7 @@ public class UserProfile {
 
 		return bookRequestsDtos;
 	}
+
 	public UserProfileDto buildProfileDto() {
 		StringBuilder favoriteAuthors = new StringBuilder();
 		String [] favoriteCategories = new String[favouriteBookCategories.size()];
@@ -197,5 +198,14 @@ public class UserProfile {
 		}
 		return bookDtos;
 	}
-	
+
+	// bidirectional
+	public void removeBookFromRequestedBooks(Book book) {
+		requestedBooks.remove(book);
+		book.getRequestingUsers().remove(this);
+	}
+
+	public List<Book> getRequestedBooks() {
+		return requestedBooks;
+	}
 }
