@@ -1,7 +1,9 @@
 package myy803.socialbookstore.controllers;
 
+import myy803.socialbookstore.datamodel.Book;
 import myy803.socialbookstore.formsdata.BookDto;
 import myy803.socialbookstore.formsdata.UserProfileDto;
+import myy803.socialbookstore.services.email.EmailService;
 import myy803.socialbookstore.services.request.RequestService;
 import myy803.socialbookstore.services.profile.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,15 @@ public class RequestController {
 
     private final UserProfileService userProfileService;
     private final RequestService requestService;
+    private final EmailService emailService;
 
     @Autowired
-    public RequestController(UserProfileService userProfileService, RequestService requestService) {
+    public RequestController(UserProfileService userProfileService,
+                             RequestService requestService,
+                             EmailService emailService) {
         this.userProfileService = userProfileService;
         this.requestService = requestService;
+        this.emailService = emailService;
     }
 
     @RequestMapping("/user/request_book")
@@ -54,8 +60,16 @@ public class RequestController {
 
     @RequestMapping("/user/accept_request")
     public String acceptBookRequest(@RequestParam("selected_user") String username, @RequestParam("book_id") int bookId, Model model) {
+        //Book requestedBook = requestService.acceptRequestForBook(username, bookId);
         requestService.acceptRequestForBook(username, bookId);
         System.err.println("Selected user: " + username + " for book id: " + bookId);
+
+        //String messageToUser = "The request you have made for the book " + requestedBook.getTitle() + " was accepted";
+        //String messageToOtherUsers = "The book " + requestedBook.getTitle() + " that you requested was picked up by another user";
+
+        //emailService.sendConformationMessageToUser(username, "Book request", messageToUser);
+        //List<UserProfileDto> otherRequestingUsers = requestService.findRequestingUsersForBook(bookId);
+        //emailService.sendMessageToUsersThatTheBookWasTaken(otherRequestingUsers, "Book request", messageToOtherUsers);
 
         return "redirect:/user/dashboard";
     }
@@ -63,8 +77,7 @@ public class RequestController {
     @RequestMapping("/user/delete_book_request")
     public String deleteBookRequest(@RequestParam("selected_request_id") int bookId, Model model) {
         String username = userProfileService.authenticateUser();
-        requestService.deleteRequestForBook(bookId);
-        System.err.println("Delete Book Request for book id: " + bookId);
+        requestService.deleteRequestForBook(username, bookId);
 
         return "redirect:/user/dashboard";
     }

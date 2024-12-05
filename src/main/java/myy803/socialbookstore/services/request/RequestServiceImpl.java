@@ -54,26 +54,27 @@ public class RequestServiceImpl implements RequestService {
 
     // accept a users request and delete requests from other users, works, add notification
     @Override
-    public void acceptRequestForBook(String username, int bookId) {
-        // find the requested book
+    public Book acceptRequestForBook(String username, int bookId) {
         Optional<Book> requestedBook = findBookById(bookId);
-        // find the user that is requesting the book
         Optional<UserProfile> userProfile = findUserProfileById(username);
-        // get the book and remove requesting user
         requestedBook.get().removeRequestingUser(userProfile.get());
 
-        //notify user that he has taken the book
-
-        // delete the book from the database because it has been taken
         bookMapper.delete(requestedBook.get());
+
+        return requestedBook.get();
     }
 
-    // DOES NOT WORK CORRECTLY
+    // DOES NOT WORK CORRECTLY, delete my book requests, WHY DOES IT NOT WORK
     @Override
-    public void deleteRequestForBook(int bookId) {
-        // find the book
+    public void deleteRequestForBook(String username, int bookId) {
+        Optional<UserProfile> userProfile = findUserProfileById(username);
         Optional<Book> requestedBook = findBookById(bookId);
-        // delete the book from the database instead of deleting the request of the user
-        //bookMapper.delete(requestedBook.get());
+        requestedBook.get().removeRequestingUser(userProfile.get());
+        userProfile.get().removeBookFromRequestedBooks(requestedBook.get());
+
+        bookMapper.save(requestedBook.get());
+        userProfileMapper.save(userProfile.get());
+
+        System.err.println(requestedBook.get().getRequestingUsers());
     }
 }

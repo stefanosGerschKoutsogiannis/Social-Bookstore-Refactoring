@@ -159,9 +159,10 @@ public class Book {
 	}
 
 	/*
-	new
+	new, bidirectional
 	 */
 	public void removeRequestingUser(UserProfile userProfile) {
 		requestingUsers.remove(userProfile);
+		userProfile.getRequestedBooks().remove(this);
 	}
 }
