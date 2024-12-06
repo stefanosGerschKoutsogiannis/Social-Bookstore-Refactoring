@@ -10,7 +10,7 @@ import myy803.socialbookstore.formsdata.SearchDto;
 import myy803.socialbookstore.mappers.BookMapper;
 
 @Component
-public class ApproximateSearchStrategy extends SearchStrategy {
+public class ApproximateSearchStrategy extends SearchTemplate {
 
 	@Autowired
 	public ApproximateSearchStrategy(BookMapper bookMapper) {
