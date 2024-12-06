@@ -8,7 +8,7 @@ import myy803.socialbookstore.formsdata.SearchDto;
 import myy803.socialbookstore.mappers.BookMapper;
 
 @Component
-public class ExactSearchStrategy extends SearchStrategy {
+public class ExactSearchStrategy extends SearchTemplate {
 
 	@Autowired
 	public ExactSearchStrategy(BookMapper bookMapper) {

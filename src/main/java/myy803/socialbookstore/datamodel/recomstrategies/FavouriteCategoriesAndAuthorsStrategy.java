@@ -9,7 +9,7 @@ import myy803.socialbookstore.formsdata.BookDto;
 import myy803.socialbookstore.mappers.UserProfileMapper;
 
 @Component
-public class FavouriteCategoriesAndAuthorsStrategy extends RecommendationsStrategy {
+public class FavouriteCategoriesAndAuthorsStrategy extends RecommendationsTemplate {
 
 	@Autowired
 	public FavouriteCategoriesAndAuthorsStrategy(UserProfileMapper userProfileMapper) {
