@@ -18,10 +18,10 @@ public abstract class RecommendationsTemplate implements RecommendationsStrategy
 		this.userProfileMapper = userProfileMapper;
 	}
 
-	abstract List<BookDto> retrieveRecommendedBooks(UserProfile userProfile);
-
 	public List<BookDto> recommend(String username) {
 		UserProfile userProfile = userProfileMapper.findByUsername(username);
 		return  retrieveRecommendedBooks(userProfile);
 	}
+
+	abstract List<BookDto> retrieveRecommendedBooks(UserProfile userProfile);
 }

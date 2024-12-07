@@ -20,9 +20,6 @@ public abstract class SearchTemplate implements SearchStrategy{
 		this.bookMapper = bookMapper;
 	}
 
-	protected abstract List<Book> makeInitialListOfBooks(SearchDto searchDto);
-	protected abstract boolean checkIfAuthorsMatch(SearchDto searchDto, Book book);
-
 
 	public ArrayList<BookDto> search(SearchDto searchDto, BookMapper bookMapper) {
 		ArrayList<BookDto> bookDtos = new ArrayList<BookDto>();
@@ -42,6 +39,9 @@ public abstract class SearchTemplate implements SearchStrategy{
 
 		return bookDtos;
 	}
+
+	protected abstract List<Book> makeInitialListOfBooks(SearchDto searchDto);
+	protected abstract boolean checkIfAuthorsMatch(SearchDto searchDto, Book book);
 
 	public BookMapper getBookMapper() {
 		return bookMapper;
