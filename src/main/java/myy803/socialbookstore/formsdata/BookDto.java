@@ -63,6 +63,15 @@ public class BookDto {
 		this.category = category;
 	}
 
+
+	public String getSearchStrategy() {
+		return searchStrategy;
+	}
+
+	public void setSearchStrategy(String searchStrategy) {
+		this.searchStrategy = searchStrategy;
+	}
+
 	@Override
 	public String toString() {
 		return "BookOfferDto [offerId=" + id + ", bookTitle=" + title + ", bookAuthors=" + authors

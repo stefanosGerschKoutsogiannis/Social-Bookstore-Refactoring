@@ -6,7 +6,7 @@ public class SearchDto {
 	
 	private String title;
 	private String authors;
-	private final ArrayList<String> searchStrategies;
+	private ArrayList<String> searchStrategies;
 	private String selectedStrategy;
 	
 	public SearchDto() {
@@ -20,6 +20,11 @@ public class SearchDto {
 	
 	public ArrayList<String> getSearchStrategies() {
 		return searchStrategies;
+	}
+
+
+	public void setSearchStrategies(ArrayList<String> searchStrategies) {
+		this.searchStrategies = searchStrategies;
 	}
 
 	public String getTitle() {
@@ -40,5 +45,9 @@ public class SearchDto {
 
 	public String getSelectedStrategy() {
 		return selectedStrategy;
+	}
+
+	public void setSelectedStrategy(String selectedStrategy) {
+		this.selectedStrategy = selectedStrategy;
 	}
 }

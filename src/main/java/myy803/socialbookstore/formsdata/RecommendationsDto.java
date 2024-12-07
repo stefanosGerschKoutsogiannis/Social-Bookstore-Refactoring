@@ -3,7 +3,7 @@ package myy803.socialbookstore.formsdata;
 import java.util.ArrayList;
 
 public class RecommendationsDto {
-	private final ArrayList<String> recommendationStrategies;
+	private ArrayList<String> recommendationStrategies;
 	private String selectedStrategy;
 	
 	public RecommendationsDto() {
@@ -18,7 +18,18 @@ public class RecommendationsDto {
 		return recommendationStrategies;
 	}
 
+	public void setRecommendationStrategies(ArrayList<String> recommendationStrategies) {
+		this.recommendationStrategies = recommendationStrategies;
+	}
+
 	public String getSelectedStrategy() {
 		return selectedStrategy;
 	}
+
+	public void setSelectedStrategy(String selectedStrategy) {
+		this.selectedStrategy = selectedStrategy;
+	}
+
+
+
 }
