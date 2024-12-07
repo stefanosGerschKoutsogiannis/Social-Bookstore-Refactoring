@@ -8,17 +8,23 @@ public class SearchFactory {
 
 	private final ExactSearchStrategy exactSearchStrategy;
 	private final ApproximateSearchStrategy approximateSearchStrategy;
+	private final RandomSearchStrategy randomSearchStrategy;
 
 	@Autowired
-	public SearchFactory(ExactSearchStrategy exactSearchStrategy, ApproximateSearchStrategy approximateSearchStrategy) {
+	public SearchFactory(ExactSearchStrategy exactSearchStrategy,
+						 ApproximateSearchStrategy approximateSearchStrategy,
+						 RandomSearchStrategy randomSearchStrategy) {
 		this.exactSearchStrategy = exactSearchStrategy;
 		this.approximateSearchStrategy = approximateSearchStrategy;
-	}
-	
+        this.randomSearchStrategy = randomSearchStrategy;
+    }
+
 	public SearchStrategy create(String searchStrategy) {
-		if(searchStrategy.equals("Exact"))
+		if (searchStrategy.equals("Exact")) {
 			return exactSearchStrategy;
-		else
+		} else if (searchStrategy.equals("Approximate")) {
 			return approximateSearchStrategy;
+		}
+		return randomSearchStrategy;
 	}
 }
