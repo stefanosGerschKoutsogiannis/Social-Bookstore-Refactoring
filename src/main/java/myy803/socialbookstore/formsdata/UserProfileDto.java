@@ -54,10 +54,6 @@ public class UserProfileDto {
 		return age;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
-	}
-
 	public String getFavouriteBookAuthors() {
 		return favouriteBookAuthors;
 	}
@@ -68,10 +64,6 @@ public class UserProfileDto {
 
 	public String[] getFavouriteBookCategories() {
 		return favouriteBookCategories;
-	}
-
-	public void setFavouriteBookCategories(String[] favouriteBookCategories) {
-		this.favouriteBookCategories = favouriteBookCategories;
 	}
 
 	@Override
