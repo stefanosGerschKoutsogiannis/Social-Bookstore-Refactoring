@@ -8,7 +8,6 @@ import myy803.socialbookstore.mappers.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.naming.directory.SearchResult;
 import java.util.List;
 
 @Service

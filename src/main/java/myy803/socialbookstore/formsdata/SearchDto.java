@@ -13,7 +13,8 @@ public class SearchDto {
 		super();
 		searchStrategies = new ArrayList<String>();
     	searchStrategies.add("Exact"); 
-    	searchStrategies.add("Approximate"); 
+    	searchStrategies.add("Approximate");
+		searchStrategies.add("I feel lucky");
 	}
 
 	
