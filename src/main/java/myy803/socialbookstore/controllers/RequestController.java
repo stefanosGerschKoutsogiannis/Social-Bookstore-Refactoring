@@ -1,11 +1,11 @@
 package myy803.socialbookstore.controllers;
 
-import myy803.socialbookstore.datamodel.Book;
+
 import myy803.socialbookstore.formsdata.BookDto;
 import myy803.socialbookstore.formsdata.UserProfileDto;
+import myy803.socialbookstore.services.auth.AuthService;
 import myy803.socialbookstore.services.email.EmailService;
 import myy803.socialbookstore.services.request.RequestService;
-import myy803.socialbookstore.services.profile.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,22 +18,22 @@ import java.util.List;
 public class RequestController {
 
 
-    private final UserProfileService userProfileService;
+    private final AuthService authService;
     private final RequestService requestService;
     private final EmailService emailService;
 
     @Autowired
-    public RequestController(UserProfileService userProfileService,
+    public RequestController(AuthService authService,
                              RequestService requestService,
                              EmailService emailService) {
-        this.userProfileService = userProfileService;
+        this.authService = authService;
         this.requestService = requestService;
         this.emailService = emailService;
     }
 
     @RequestMapping("/user/request_book")
     public String requestBook(@RequestParam("selected_book_id") int bookId, Model model) {
-        String username = userProfileService.authenticateUser();
+        String username = authService.authenticateUser();
         requestService.requestBook(username, bookId);
 
         return "redirect:/user/dashboard";
@@ -41,7 +41,7 @@ public class RequestController {
 
     @RequestMapping("/user/requests")
     public String showUserBookRequests(Model model) {
-        String username = userProfileService.authenticateUser();
+        String username = authService.authenticateUser();
         List <BookDto> requests = requestService.findBookRequests(username);
         model.addAttribute("requests", requests);
 
@@ -76,7 +76,7 @@ public class RequestController {
 
     @RequestMapping("/user/delete_book_request")
     public String deleteBookRequest(@RequestParam("selected_request_id") int bookId, Model model) {
-        String username = userProfileService.authenticateUser();
+        String username = authService.authenticateUser();
         requestService.deleteRequestForBook(username, bookId);
 
         return "redirect:/user/dashboard";

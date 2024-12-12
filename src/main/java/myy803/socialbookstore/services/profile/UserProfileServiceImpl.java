@@ -3,10 +3,7 @@ package myy803.socialbookstore.services.profile;
 import myy803.socialbookstore.datamodel.BookCategory;
 import myy803.socialbookstore.datamodel.User;
 import myy803.socialbookstore.formsdata.UserProfileDto;
-import myy803.socialbookstore.mappers.BookAuthorMapper;
-import myy803.socialbookstore.mappers.BookCategoryMapper;
-import myy803.socialbookstore.mappers.UserMapper;
-import myy803.socialbookstore.mappers.UserProfileMapper;
+import myy803.socialbookstore.mappers.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,47 +18,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserProfileServiceImpl implements UserDetailsService, UserProfileService {
-
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Autowired
-    UserMapper userMapper;
-    @Autowired
-    UserProfileMapper userProfileMapper;
-    @Autowired
-    BookAuthorMapper bookAuthorMapper;
-    @Autowired
-    BookCategoryMapper bookCategoryMapper;
+public class UserProfileServiceImpl implements UserProfileService {
 
 
+    private final UserProfileMapper userProfileMapper;
+    private final BookAuthorMapper bookAuthorMapper;
+    private final BookCategoryMapper bookCategoryMapper;
 
-    @Override
-    public void saveUser(User user) {
-        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        userMapper.save(user);
+    @Autowired
+    public UserProfileServiceImpl(UserProfileMapper userProfileMapper,
+                                  BookAuthorMapper bookAuthorMapper,
+                                  BookCategoryMapper bookCategoryMapper) {
+        this.userProfileMapper = userProfileMapper;
+        this.bookAuthorMapper = bookAuthorMapper;
+        this.bookCategoryMapper = bookCategoryMapper;
     }
 
-    @Override
-    public boolean isUserPresent(User user) {
-        Optional<User> storedUser = userMapper.findByUsername(user.getUsername());
-        return storedUser.isPresent();
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userMapper.findByUsername(username).orElseThrow(
-                ()-> new UsernameNotFoundException(
-                        String.format("USER_NOT_FOUND", username)
-                ));
-    }
-
-    @Override
-    public String authenticateUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
-    }
 
     @Override
     public List<BookCategory> findAllBookCategories() {

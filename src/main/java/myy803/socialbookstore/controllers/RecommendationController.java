@@ -2,8 +2,8 @@ package myy803.socialbookstore.controllers;
 
 import myy803.socialbookstore.formsdata.BookDto;
 import myy803.socialbookstore.formsdata.RecommendationsDto;
+import myy803.socialbookstore.services.auth.AuthService;
 import myy803.socialbookstore.services.recommend.RecommendationService;
-import myy803.socialbookstore.services.profile.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +15,13 @@ import java.util.List;
 @Controller
 public class RecommendationController {
 
-    private final UserProfileService userProfileService;
+    private final AuthService authService;
     private final RecommendationService recommendationService;
 
     @Autowired
-    public RecommendationController(UserProfileService userProfileService,
+    public RecommendationController(AuthService authService,
                                     RecommendationService recommendationService) {
-        this.userProfileService = userProfileService;
+        this.authService = authService;
         this.recommendationService = recommendationService;
     }
 
@@ -36,7 +36,7 @@ public class RecommendationController {
 
     @RequestMapping("/user/recommend_offers")
     public String recommend(@ModelAttribute("recomDto") RecommendationsDto recommendationsDto, Model model) {
-        String username = userProfileService.authenticateUser();
+        String username = authService.authenticateUser();
         recommendationService.recommendBooks(recommendationsDto, username);
         List<BookDto> bookDtos = recommendationService.recommendBooks(recommendationsDto, username);
 

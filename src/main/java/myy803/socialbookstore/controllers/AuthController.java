@@ -1,7 +1,7 @@
 package myy803.socialbookstore.controllers;
 
 
-import myy803.socialbookstore.services.profile.UserProfileService;
+import myy803.socialbookstore.services.auth.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +14,11 @@ import myy803.socialbookstore.datamodel.User;
 @Controller
 public class AuthController {
 
-    private final UserProfileService userProfileService;
+    private final AuthService authService;
 
     @Autowired
-    public AuthController(UserProfileService userProfileService) {
-        this.userProfileService = userProfileService;
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
 
     @RequestMapping("/login")
@@ -35,12 +35,12 @@ public class AuthController {
     @RequestMapping("/save")
     public String registerUser(@ModelAttribute("user") User user, Model model){
        
-        if(userProfileService.isUserPresent(user)){
+        if(authService.isUserPresent(user)){
             model.addAttribute("successMessage", "User already registered!");
             return "auth/login";
         }
 
-        userProfileService.saveUser(user);
+        authService.saveUser(user);
         model.addAttribute("successMessage", "User registered successfully!");
 
         return "auth/login";
