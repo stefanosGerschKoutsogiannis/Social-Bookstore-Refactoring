@@ -21,7 +21,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendConformationMessageToUser(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@socialbookstore.com");
+        message.setFrom("noreply@cs05046.com");
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
