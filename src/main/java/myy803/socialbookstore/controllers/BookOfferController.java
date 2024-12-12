@@ -2,6 +2,7 @@ package myy803.socialbookstore.controllers;
 
 import myy803.socialbookstore.datamodel.BookCategory;
 import myy803.socialbookstore.formsdata.BookDto;
+import myy803.socialbookstore.services.auth.AuthService;
 import myy803.socialbookstore.services.offer.BookOfferService;
 import myy803.socialbookstore.services.profile.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +18,18 @@ import java.util.List;
 public class BookOfferController {
 
 
-    private final UserProfileService userProfileService;
     private final BookOfferService bookOfferService;
+    private final AuthService authService;
 
     @Autowired
-    public BookOfferController(UserProfileService userProfileService, BookOfferService bookOfferService) {
-        this.userProfileService = userProfileService;
+    public BookOfferController(BookOfferService bookOfferService, AuthService authService) {
         this.bookOfferService = bookOfferService;
+        this.authService = authService;
     }
 
     @RequestMapping("/user/offers")
     public String listBookOffers(Model model) {
-        String username = userProfileService.authenticateUser();
+        String username = authService.authenticateUser();
         List<BookDto> bookOffersDtos = bookOfferService.findBookOffers(username);
 
         model.addAttribute("offers", bookOffersDtos);
@@ -47,7 +48,7 @@ public class BookOfferController {
 
     @RequestMapping("/user/save_offer")
     public String saveBookOffer(@ModelAttribute("offer") BookDto bookOfferDto, Model model) {
-        String username = userProfileService.authenticateUser();
+        String username = authService.authenticateUser();
         bookOfferService.addBookOffer(username, bookOfferDto);
 
         return "redirect:/user/offers";

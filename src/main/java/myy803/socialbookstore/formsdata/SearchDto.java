@@ -14,7 +14,7 @@ public class SearchDto {
 		searchStrategies = new ArrayList<String>();
     	searchStrategies.add("Exact"); 
     	searchStrategies.add("Approximate");
-		searchStrategies.add("I feel lucky");
+		searchStrategies.add("Random(I feel lucky)");
 	}
 
 	

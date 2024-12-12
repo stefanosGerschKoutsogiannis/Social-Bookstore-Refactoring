@@ -3,7 +3,6 @@ package myy803.socialbookstore.datamodel.searchstrategies;
 import myy803.socialbookstore.formsdata.BookDto;
 import myy803.socialbookstore.formsdata.SearchDto;
 import myy803.socialbookstore.mappers.BookMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

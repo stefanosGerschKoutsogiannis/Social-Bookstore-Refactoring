@@ -1,6 +1,7 @@
 package myy803.socialbookstore.config;
 
-import myy803.socialbookstore.services.profile.UserProfileServiceImpl;
+import myy803.socialbookstore.mappers.UserMapper;
+import myy803.socialbookstore.services.auth.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,9 +24,10 @@ public class WebSecurityConfig {
     @Autowired
     private CustomSecuritySuccessHandler customSecuritySuccessHandler;
 
+
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserProfileServiceImpl();
+        return new AuthServiceImpl();
     }
 
     @Bean
