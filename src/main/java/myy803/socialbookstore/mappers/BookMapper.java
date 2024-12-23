@@ -14,4 +14,5 @@ public interface BookMapper extends JpaRepository<Book, Integer> {
 
 	@Query(value = "SELECT * FROM Books ORDER BY RAND() LIMIT 1", nativeQuery = true)
 	Optional<Book> findRandomEntity();
+
 }
