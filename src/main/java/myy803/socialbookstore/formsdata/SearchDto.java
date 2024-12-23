@@ -1,5 +1,7 @@
 package myy803.socialbookstore.formsdata;
 
+import myy803.socialbookstore.datamodel.BookCategory;
+
 import java.util.ArrayList;
 
 public class SearchDto {
